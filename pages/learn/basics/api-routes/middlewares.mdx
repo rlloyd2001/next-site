@@ -33,7 +33,7 @@ export default (req, res) => {
     quotes = quotes.filter(quote => quote.author.toLowerCase().includes(author.toLowerCase()));
   }
   if (!quotes.length) {
-    quotes = quotes.filter(quote => quote.author.toLowerCase() === 'unknown');
+    quotes = allQuotes.filter(quote => quote.author.toLowerCase() === 'unknown');
   }
 
   const quote = quotes[Math.floor(Math.random() * quotes.length)];
