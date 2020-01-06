@@ -94,7 +94,7 @@ The new output classifies each page as one of the following:
 
 - **Server-Side Rendered (Server)**: the page server-side renders at runtime, meaning it uses `getInitialProps` or [`getServerProps` (proposal)](https://github.com/zeit/next.js/issues/9524)
 - **Automatically Statically Optimized (Static)**: the page was rendered as static HTML at build time, and will be served as a static file (uses no initial props)
-- **Statically Generated Using Computed Data (SSG)**: the page was generated as static HTML/JSON at build time, and will be served as static files (uses [`getStaticProps` (beta)](https://github.com/zeit/next.js/issues/9524))
+- **Statically Generated Using Computed Data (SSG)**: the page was generated as static HTML/JSON at build time, and will be served as static files (uses [`getStaticProps` (proposal)](https://github.com/zeit/next.js/issues/9524))
 
 Furthermore, the new output displays the Gzipped size of each page — these
 sizes exclude files that are shared by all pages (displayed separately).
@@ -136,9 +136,12 @@ inadvertently import a polyfill for one of these APIs.
 
 The list of built-in APIs and the polyfills they make obsolete are as follows:
 
-- [**fetch()**](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) — Replacing: `whatwg-fetch`, `isomorphic-fetch`, `unfetch`, and `isomorphic-unfetch`.
+- [**fetch()**](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) — Replacing: `whatwg-fetch` and `unfetch`.
 - [**URL**](https://developer.mozilla.org/en-US/docs/Web/API/URL) — Replacing: the [`url` package (Node.js API)](https://nodejs.org/api/url.html).
 - [**Object.assign()**](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign) — Replacing: `object-assign`, `object.assign`, and `core-js/object/assign`.
+
+You still need to import `isomorphic-fetch` or `isomorphic-unfetch` if you're
+using `fetch()` on the server.
 
 This change is completely non-breaking, and all polyfills are made with the
 most spec-compliant versions available.
